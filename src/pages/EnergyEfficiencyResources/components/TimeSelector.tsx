@@ -26,7 +26,7 @@ const TimeSelector: React.FC<Props> = ({ value = {}, onChange }) => {
   //     range:value?.range ?? [dayjs().subtract(3, 'day').startOf('day'), dayjs().endOf('day')],
   //   })
 
-  // 当用户选择时间类型时，更新RangePicker的值
+  // 当用户选择时间类型时，更新RangePicker的值ss
   useEffect(() => {
     if (timeType === 'custom') {
       setRange([]);
