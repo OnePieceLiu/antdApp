@@ -64,7 +64,7 @@ const searchData: any[] = [
     type: '插入任务',
   },
   {
-    key: '3',
+    key: '66',
     app: '123',
     web: '23',
     BMS: '33',
@@ -73,7 +73,7 @@ const searchData: any[] = [
     type: '需求变更',
   },
   {
-    key: '3',
+    key: '4',
     app: '123',
     web: '23',
     BMS: '33',
@@ -82,7 +82,7 @@ const searchData: any[] = [
     type: 'hotfix任务',
   },
   {
-    key: '3',
+    key: '5',
     app: '123',
     web: '23',
     BMS: '33',
@@ -102,7 +102,7 @@ const LaunchTaskCard: React.FC = () => {
       }}
     >
       <Table<any>
-        rowKey={(record) => record.index}
+        rowKey={(record) => record.key}
         size="large"
         columns={columns}
         dataSource={searchData}

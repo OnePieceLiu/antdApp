@@ -2,7 +2,7 @@ import { Card } from 'antd';
 import * as echarts from 'echarts';
 import React, { useEffect, useRef } from 'react';
 
-const ProjectScheduleCard: React.FC = () => {
+const QualityBugQuantityCard: React.FC = () => {
   const chartRef: any = useRef(); //拿到DOM容器
 
   useEffect(() => {
@@ -18,8 +18,8 @@ const ProjectScheduleCard: React.FC = () => {
       },
       legend: {},
       grid: {
-        left: '0',
-        right: '0',
+        left: '3%',
+        right: '3%',
         bottom: '50px',
         containLabel: true,
       },
@@ -40,7 +40,7 @@ const ProjectScheduleCard: React.FC = () => {
       ],
       series: [
         {
-          name: '需求池',
+          name: 'IOS',
           type: 'bar',
           stack: 'total',
           label: {
@@ -52,7 +52,7 @@ const ProjectScheduleCard: React.FC = () => {
           data: [320, 302, 301, 334, 390, 330, 320],
         },
         {
-          name: '产品设计中',
+          name: 'Android',
           type: 'bar',
           stack: 'total',
           label: {
@@ -64,7 +64,7 @@ const ProjectScheduleCard: React.FC = () => {
           data: [120, 132, 101, 134, 90, 230, 210],
         },
         {
-          name: '内审中',
+          name: 'Web',
           type: 'bar',
           stack: 'total',
           label: {
@@ -76,7 +76,7 @@ const ProjectScheduleCard: React.FC = () => {
           data: [220, 182, 191, 234, 290, 330, 310],
         },
         {
-          name: '产品宣讲',
+          name: 'Service',
           type: 'bar',
           stack: 'total',
           label: {
@@ -87,18 +87,6 @@ const ProjectScheduleCard: React.FC = () => {
           },
           data: [150, 212, 201, 154, 190, 330, 410],
         },
-        {
-          name: '待排期',
-          type: 'bar',
-          stack: 'total',
-          label: {
-            show: true,
-          },
-          emphasis: {
-            focus: 'series',
-          },
-          data: [820, 832, 901, 934, 1290, 1330, 1320],
-        },
       ],
     });
 
@@ -108,7 +96,7 @@ const ProjectScheduleCard: React.FC = () => {
   }, []);
 
   return (
-    <Card style={{ marginBottom: 16 }} title="项目数量">
+    <Card style={{ marginBottom: 16 }} title="BUG数量">
       <div
         ref={chartRef}
         style={{
@@ -120,4 +108,4 @@ const ProjectScheduleCard: React.FC = () => {
   );
 };
 
-export default ProjectScheduleCard;
+export default QualityBugQuantityCard;

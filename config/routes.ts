@@ -48,11 +48,11 @@ export default [
         name: 'quality',
         component: './EnergyEfficiencyResources/quality',
       },
-      {
-        path: '/admin/progress',
-        name: 'progress',
-        component: './EnergyEfficiencyResources/progress',
-      },
+      //   {
+      //     path: '/admin/progress',
+      //     name: 'progress',
+      //     component: './EnergyEfficiencyResources/progress',
+      //   },
       {
         path: '/admin/my-data',
         name: 'my-data',

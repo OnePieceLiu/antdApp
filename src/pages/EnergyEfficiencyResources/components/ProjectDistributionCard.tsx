@@ -1,58 +1,130 @@
-import React from 'react';
-
-import { Pie } from '@ant-design/plots';
 import { Card, Col, Row } from 'antd';
+import * as echarts from 'echarts';
+import React, { useEffect, useRef } from 'react';
 
 const ProjectDistributionCard: React.FC = () => {
-  const data = [
-    {
-      type: '分类一',
-      value: 27,
-    },
-    {
-      type: '分类二',
-      value: 25,
-    },
-    {
-      type: '分类三',
-      value: 18,
-    },
-    {
-      type: '分类四',
-      value: 15,
-    },
-    {
-      type: '分类五',
-      value: 10,
-    },
-    {
-      type: '其他',
-      value: 5,
-    },
-  ];
-  const config: any = {
-    appendPadding: 10,
-    data,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.75,
-    legend: {
-      position: 'top',
-    },
-    label: {
-      type: 'spider',
-      labelHeight: 28,
-      content: '{name}\n{percentage}',
-    },
-    interactions: [
-      {
-        type: 'element-selected',
+  const chartRef1: any = useRef(); //拿到DOM容器
+  const chartRef2: any = useRef(); //拿到DOM容器
+  const chartRef3: any = useRef(); //拿到DOM容器
+  // 根据条件来渲染
+  useEffect(() => {
+    const myChart1 = echarts.init(chartRef1.current);
+    const myChart2 = echarts.init(chartRef2.current);
+    const myChart3 = echarts.init(chartRef3.current);
+
+    // 优先级
+    myChart1.setOption({
+      title: {
+        text: '优先级',
+        left: 'center',
+        // left: 'left',
       },
-      {
-        type: 'element-active',
+      tooltip: {
+        trigger: 'item',
       },
-    ],
-  };
+      legend: {
+        top: '30px',
+        left: 'center',
+      },
+      series: [
+        {
+          name: '优先级',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: 1048, name: 'Highest' },
+            { value: 735, name: 'High' },
+            { value: 580, name: 'Low' },
+            { value: 484, name: 'Lowest' },
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    });
+    // 客户端
+    myChart2.setOption({
+      title: {
+        text: '客户端',
+        left: 'center',
+        // left: 'left',
+      },
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        top: '30px',
+        left: 'center',
+      },
+      series: [
+        {
+          name: '客户端',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: 1048, name: 'IOS' },
+            { value: 735, name: 'Android' },
+            { value: 580, name: 'Web' },
+            { value: 484, name: 'Service' },
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    });
+    // 部门分布
+    myChart3.setOption({
+      title: {
+        text: '部门分布',
+        left: 'center',
+        // left: 'left',
+      },
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        top: '30px',
+        left: 'center',
+      },
+      series: [
+        {
+          name: '部门分布',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: 1048, name: '产品部' },
+            { value: 735, name: '前端' },
+            { value: 580, name: '后端' },
+            { value: 484, name: '测试' },
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    });
+
+    return () => {
+      myChart1.dispose();
+      myChart2.dispose();
+      myChart3.dispose();
+    };
+  }, []);
+
   return (
     <Card
       bordered={false}
@@ -63,14 +135,32 @@ const ProjectDistributionCard: React.FC = () => {
       }}
     >
       <Row gutter={12}>
-        <Col span={8} style={{ height: '180px', width: '100%' }}>
-          <Pie {...config} />
+        <Col span={8}>
+          <div
+            ref={chartRef1}
+            style={{
+              width: '100%',
+              height: 300,
+            }}
+          />
         </Col>
-        <Col span={8} style={{ height: '180px', width: '100%' }}>
-          <Pie {...config} />
+        <Col span={8}>
+          <div
+            ref={chartRef2}
+            style={{
+              width: '100%',
+              height: 300,
+            }}
+          />
         </Col>
-        <Col span={8} style={{ height: '180px', width: '100%' }}>
-          <Pie {...config} />
+        <Col span={8}>
+          <div
+            ref={chartRef3}
+            style={{
+              width: '100%',
+              height: 300,
+            }}
+          />
         </Col>
       </Row>
     </Card>
